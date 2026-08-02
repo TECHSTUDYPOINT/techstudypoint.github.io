@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Study Point - PGDCA Notes 2025-26</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #d90429 0%, #7209b7 100%);
+    color: #fff;
+    padding: 40px 20px 50px;
+    text-align: center;
+  }
+  header .logo-img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 8px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 8px;
+  }
+  header .tagline {
+    font-size: 15px;
+    margin-top: 6px;
+    opacity: 0.9;
+  }
+  header .badges {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  header .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  /* Container */
+  .container { max-width: 900px; margin: -25px auto 0; padding: 0 16px 60px; }
+
+  /* About card */
+  .about-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+  }
+  .about-card h2 {
+    color: #7209b7;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .about-card p {
+    font-size: 17px;
+    color: #333;
+    text-align: justify;
+  }
+  .about-card ul {
+    margin: 14px 0 0 20px;
+    font-size: 16.5px;
+    color: #333;
+  }
+  .about-card ul li { margin-bottom: 6px; }
+
+  /* Section titles */
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 35px 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, #d90429, transparent);
+  }
+
+  /* Bundle card */
+  .bundle-card {
+    background: linear-gradient(135deg, #ffb703, #fb8500);
+    border-radius: 16px;
+    padding: 26px 22px;
+    color: #1a1a2e;
+    box-shadow: 0 8px 24px rgba(251,133,0,0.35);
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bundle-card .tag {
+    position: absolute;
+    top: 14px;
+    right: -34px;
+    background: #d90429;
+    color: #fff;
+    padding: 4px 40px;
+    font-size: 12px;
+    font-weight: 700;
+    transform: rotate(35deg);
+  }
+  .bundle-card h3 { font-size: 20px; margin-bottom: 6px; }
+  .bundle-card p { font-size: 13.5px; margin-bottom: 14px; }
+  .bundle-card .price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .bundle-card .old-price {
+    text-decoration: line-through;
+    opacity: 0.7;
+    font-size: 15px;
+  }
+  .bundle-card .new-price {
+    font-size: 26px;
+    font-weight: 800;
+  }
+  .buy-btn {
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s ease, background 0.2s ease;
+  }
+  .buy-btn:hover { background: #d90429; transform: translateY(-2px); }
+
+  /* Paper list */
+  .paper-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .paper-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    flex-wrap: wrap;
+    gap: 10px;
+    border-left: 5px solid #7209b7;
+  }
+  .paper-item .info { flex: 1; min-width: 180px; }
+  .paper-item .paper-num {
+    font-size: 12px;
+    color: #7209b7;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .paper-item .paper-name {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-top: 2px;
+  }
+  .paper-item .price {
+    font-size: 17px;
+    font-weight: 700;
+    color: #d90429;
+    margin-right: 6px;
+  }
+  .paper-item .right-side {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .paper-item.locked {
+    opacity: 0.6;
+    border-left-color: #ccc;
+  }
+  .coming-soon {
+    font-size: 12px;
+    background: #eee;
+    color: #777;
+    padding: 6px 14px;
+    border-radius: 8px;
+  }
+
+  /* Sample section */
+  .sample-box {
+    background: #fff;
+    border: 2px dashed #7209b7;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .sample-box p { font-size: 14px; margin-bottom: 12px; color: #333; }
+  .sample-box a.buy-btn { background: #7209b7; }
+  .sample-box a.buy-btn:hover { background: #560bad; }
+
+  /* Trust points */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 30px;
+  }
+  .trust-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px 10px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  }
+  .trust-item .icon { font-size: 26px; margin-bottom: 6px; }
+  .trust-item .label { font-size: 12.5px; color: #444; font-weight: 600; }
+
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: #777;
+    background: #1a1a2e;
+    color: #ccc;
+  }
+  footer strong { color: #fff; }
+
+  @media (max-width: 480px) {
+    header .logo { font-size: 26px; }
+    .bundle-card .new-price { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="assets/logo.png" alt="Tech Study Point Logo" class="logo-img">
+  <div class="tagline">PGDCA Notes | Session 2025-26</div>
+  <div class="badges">
+    <a href="index.html" class="badge">🏠 Home</a>
+    <a href="contact.html" class="badge">📩 Contact Us</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="about-card">
+    <h2>यह Notes क्यों खरीदें?</h2>
+    <p>
+      ये Notes JRRSU (Jagadguru Ramanandacharya Rajasthan Sanskrit University, Jaipur) के
+      PGDCA (Post Graduate Diploma in Computer Application) — Session 2025-26 के official
+      syllabus के अनुसार तैयार किए गए हैं। हर Unit को exam-oriented तरीके से, step-by-step
+      examples, diagrams और comparison tables के साथ detail में cover किया गया है — ताकि
+      कोई भी student बिना ट्यूशन के खुद से पूरी तैयारी कर सके।
+    </p>
+    <ul>
+      <li>✅ हिंदी Devnagari में लिखे गए (Technical terms English में — समझना आसान)</li>
+      <li>✅ हर Unit के अंत में Revision Questions (Self-check के लिए)</li>
+      <li>✅ Syllabus के अनुसार — न ज़्यादा, न कम</li>
+      <li>✅ PDF Format — Mobile और Laptop दोनों पर आसानी से पढ़ें</li>
+    </ul>
+    <div style="margin-top:16px; text-align:center;">
+      <a href="https://drive.google.com/file/d/1pKuSFNbOVd-kLkjaqyauIhwV7d3cxq6A/view?usp=drive_link" target="_blank" class="buy-btn" style="background:#1a1a2e;">📋 Official Syllabus देखें</a>
+    </div>
+  </div>
+
+  <!-- Bundle Section -->
+  <div class="section-title">🔥 सबसे बेहतर ऑफर <div class="line"></div></div>
+  <div class="bundle-card">
+    <div class="tag">BEST VALUE</div>
+    <h3>Complete PGDCA Bundle</h3>
+    <p>सभी Papers के Notes एक साथ — एक ही Click में Download करें</p>
+    <div class="price-row">
+      <span class="old-price">₹490</span>
+      <span class="new-price">₹299</span>
+      <a href="#" class="buy-btn">Buy Bundle Now</a>
+    </div>
+  </div>
+
+  <!-- Individual Papers Section -->
+  <div class="section-title">📄 Paper-wise Notes <div class="line"></div></div>
+  <div class="paper-list">
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper I</div>
+        <div class="paper-name">Computer Fundamental</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1o_p5s5frZjRKc2VfRdHENiDNpKTJVAI_/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper II</div>
+        <div class="paper-name">Introduction to Operating Systems</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1YbcDGpu5_6fhO_PBONtJF9-vp5tmam4n/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper III</div>
+        <div class="paper-name">Office Management Tools</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1HlqP0_JvwJfaDv0KelxX8c5ZBXrATIDr/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper IV</div>
+        <div class="paper-name">Programming with Visual Basic .Net</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1hvN29DQLH-lafvDsqgi0SaS-i1SPtakJ/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper V</div>
+        <div class="paper-name">Database Management System</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1PngwQCdtwxPNudxTnofC-aZwAvu0E_yg/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper VI</div>
+        <div class="paper-name">OOP's Programming with C++</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/17X89cFWufQYxG2NDW2tUuOveuTeKvtb0/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper VII</div>
+        <div class="paper-name">Introduction to Emerging Technologies</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1DQoOkaVhPVudYMNFxRH5DnPic6TimD1f/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper VIII</div>
+        <div class="paper-name">Internet Technologies and Web Design</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1lc5Eb4-Rihahugi7ib8tYY8HEw2cEDMS/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper IX</div>
+        <div class="paper-name">Data Communication and Computer Networks</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1uTRphAEMexIcWfgaNf6izsJmJawSZfxX/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="paper-item">
+      <div class="info">
+        <div class="paper-num">Paper X</div>
+        <div class="paper-name">Digital Marketing</div>
+      </div>
+      <div class="right-side">
+        <a href="https://drive.google.com/file/d/1icLSv_t_itJ0Fo9gx0lRuws8XdHrThvJ/view?usp=drive_link" target="_blank" style="font-size:13px; color:#7209b7; text-decoration:underline;">Sample</a>
+        <span class="price">₹39</span>
+        <a href="#" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Syllabus -->
+  <div class="sample-box">
+    <p>📋 Complete PGDCA Syllabus (Session 2025-26) देखना चाहते हैं?</p>
+    <a href="https://drive.google.com/file/d/1pKuSFNbOVd-kLkjaqyauIhwV7d3cxq6A/view?usp=drive_link" target="_blank" class="buy-btn">Syllabus Download</a>
+  </div>
+
+  <!-- Trust points -->
+  <div class="trust-grid">
+    <div class="trust-item"><div class="icon">⚡</div><div class="label">Instant PDF Download</div></div>
+    <div class="trust-item"><div class="icon">🔒</div><div class="label">Secure Payment</div></div>
+    <div class="trust-item"><div class="icon">📱</div><div class="label">Mobile Friendly</div></div>
+    <div class="trust-item"><div class="icon">🎯</div><div class="label">Syllabus Based</div></div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Tech Study Point</strong> &nbsp;|&nbsp; Session 2025-26 &nbsp;|&nbsp; PGDCA Course
+</footer>
+
+</body>
+</html>
